@@ -1,5 +1,5 @@
 # image2pdf
 Convert image files to pdf
 
-INSTALLATION:
+Requirements:
 pip install img2pdf

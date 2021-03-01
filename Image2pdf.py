@@ -1,4 +1,18 @@
-import img2pdf 
+try: 
+    import img2pdf
+except:
+    import os
+    print("Requirements not found\n\nInstalling requirements now...\n")
+    try:
+        os.system("pip install img2pdf")
+    except:
+        try:
+            os.system("pip3 install img2pdf")
+        except:
+            os.system("pip2 install img2pdf")
+    print("\nRequirements have been installed. Run the applicaiton again.\n")
+    exit()
+
 import tkinter as tk
 from tkinter import filedialog
 
@@ -9,7 +23,6 @@ root.withdraw()
 imgList = filedialog.askopenfilenames()
 
 imgList = list(imgList)
-
 print("This is the order your files will be converted to pdf in :")
     
 for image in imgList:

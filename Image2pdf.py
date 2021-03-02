@@ -13,6 +13,7 @@ except:
     print("\nRequirements have been installed. Run the applicaiton again.\n")
     exit()
 
+import time
 import tkinter as tk
 from tkinter import filedialog
 
@@ -48,5 +49,9 @@ try:
         pdffile.write(pdfData)
 
     print("PDF Created!")
+    print("Exiting now...")
+    time.sleep(3)
 except Exception as e:
     print("Filetype not supported.")
+    time.sleep(3)
+    

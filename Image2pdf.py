@@ -1,7 +1,12 @@
+import time
+import tkinter as tk
+from tkinter import filedialog
+import os
+import random
+
 try: 
     import img2pdf
 except:
-    import os
     print("Requirements not found\n\nInstalling requirements now...\n")
     try:
         os.system("pip install img2pdf")
@@ -13,15 +18,52 @@ except:
     print("\nRequirements have been installed. Run the applicaiton again.\n")
     exit()
 
-import time
-import tkinter as tk
-from tkinter import filedialog
+try:
+    os.system("cls")
+except:
+    os.system("clear")
+
+banners = [
+r'''
+ M""M M"""""`'"""`YM MM'"""""`MM          d8888b.          MM"""""""`YM M""""""'YMM MM""""""""`M 
+ M  M M  mm.  mm.  M M' .mmm. `M              `88          MM  mmmmm  M M  mmmm. `M MM  mmmmmmmM 
+ M  M M  MMM  MMM  M M  MMMMMMMM          .aaadP'          M'        .M M  MMMMM  M M'      MMMM 
+ M  M M  MMM  MMM  M M  MMM   `M 88888888 88'     88888888 MM  MMMMMMMM M  MMMMM  M MM  MMMMMMMM 
+ M  M M  MMM  MMM  M M. `MMM' .M          88.              MM  MMMMMMMM M  MMMM' .M MM  MMMMMMMM 
+ M  M M  MMM  MMM  M MM.     .MM          Y88888P          MM  MMMMMMMM M       .MM MM  MMMMMMMM 
+ MMMM MMMMMMMMMMMMMM MMMMMMMMMMM                           MMMMMMMMMMMM MMMMMMMMMMM MMMMMMMMMMMM 
+''',
+r'''
+ _________ _______  _______      _______        _______  ______   _______ 
+ \__   __/(       )(  ____ \    / ___   )      (  ____ )(  __  \ (  ____ \
+    ) (   | () () || (    \/    \/   )  |      | (    )|| (  \  )| (    \/
+    | |   | || || || |      _____   /   )_____ | (____)|| |   ) || (__    
+    | |   | |(_)| || | ____(_____)_/   /(_____)|  _____)| |   | ||  __)   
+    | |   | |   | || | \_  )     /   _/        | (      | |   ) || (      
+ ___) (___| )   ( || (___) |    (   (__/\      | )      | (__/  )| )      
+ \_______/|/     \|(_______)    \_______/      |/       (______/ |/       
+''',
+r'''
+ ██╗███╗   ███╗ ██████╗       ██████╗       ██████╗ ██████╗ ███████╗
+ ██║████╗ ████║██╔════╝       ╚════██╗      ██╔══██╗██╔══██╗██╔════╝
+ ██║██╔████╔██║██║  ███╗█████╗ █████╔╝█████╗██████╔╝██║  ██║█████╗  
+ ██║██║╚██╔╝██║██║   ██║╚════╝██╔═══╝ ╚════╝██╔═══╝ ██║  ██║██╔══╝  
+ ██║██║ ╚═╝ ██║╚██████╔╝      ███████╗      ██║     ██████╔╝██║     
+ ╚═╝╚═╝     ╚═╝ ╚═════╝       ╚══════╝      ╚═╝     ╚═════╝ ╚═╝    
+''']
+
+print(random.choice(banners))
 
 root = tk.Tk()
 
 root.withdraw()
 
 imgList = filedialog.askopenfilenames()
+
+if imgList == None or imgList == "" or imgList == []:
+    print("No files selected.\n\nExiting now...\n")
+    time.sleep(2)
+    exit()
 
 imgList = list(imgList)
 print("This is the order your files will be converted to pdf in :")
@@ -44,14 +86,14 @@ if input("\nIs the order correct? (Y/n): ") == "n":
 
 try:
     pdfData = img2pdf.convert(imgList)
-    fileName = input("Enter pdf filename: ")
+    fileName = input("\nEnter pdf filename: ")
     with open(f"{fileName}.pdf", "wb") as pdffile:
         pdffile.write(pdfData)
 
-    print("PDF Created!")
-    print("Exiting now...")
-    time.sleep(3)
+    print("\nPDF Created!")
+    print("\nExiting now...")
+    time.sleep(2)
 except Exception as e:
-    print("Filetype not supported.")
-    time.sleep(3)
+    print("\nFiletype not supported.")
+    time.sleep(2)
     

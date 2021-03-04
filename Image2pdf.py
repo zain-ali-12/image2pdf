@@ -4,36 +4,56 @@ from tkinter import filedialog
 import subprocess
 import random
 import subprocess
+import os
+import sys
 
-try: 
-    import colorama
-    from colorama import Fore, Back, Style
-except:
-    print("Requirements not found\n\nInstalling requirements now...\n")
-    try:
-        subprocess.run(['pip install colorama'], check = True)
+PLATFORM = ""
+if "win" in sys.platform:
+    PLATFORM = "win"
+    
+if PLATFORM == "win":
+    try: 
+        import colorama
+        from colorama import Fore, Back, Style
     except:
+        print("Requirements not found\n\nInstalling requirements now...\n")   
+        os.system("pip install colorama")
+        print(f"\n[+] Requirements have been installed. Run the applicaiton again.\n")
+        exit()
+else:
+    try: 
+        import colorama
+        from colorama import Fore, Back, Style
+    except:
+        print("Requirements not found\n\nInstalling requirements now...\n")   
         subprocess.run(['pip3 install colorama'], check = True)
-    print("\nRequirements have been installed. Run the applicaiton again.\n")
-    exit()
-
-try: 
-    import img2pdf
-except:
-    print("Requirements not found\n\nInstalling requirements now...\n")
-    try:
-        subprocess.run(['pip install img2pdf'], check = True)
-    except:
-        subprocess.run(['pip3 install img2pdf'], check = True)
-    print(f"\n{Fore.GREEN}[+]{Fore.RESET} Requirements have been installed. Run the applicaiton again.\n")
-    exit()
+        print(f"\n[+] Requirements have been installed. Run the applicaiton again.\n")
+        exit()
 
 colorama.init(autoreset=True)
 
-try:
-    subprocess.run(['cls'], check = True)
-except:
-    subprocess.run(['clear'], check = True)
+if PLATFORM == "win":
+    try: 
+        import img2pdf
+    except:
+        print("Requirements not found\n\nInstalling requirements now...\n")   
+        os.system("pip install img2pdf")
+        print(f"\n{Fore.CYAN}[+]{Fore.RESET} Requirements have been installed. Run the applicaiton again.\n")
+        exit()
+else:
+    try: 
+        import img2pdf
+    except:
+        print("Requirements not found\n\nInstalling requirements now...\n")   
+        subprocess.run(['pip3 install img2pdf'], check = True)
+        print(f"\n{Fore.CYAN}[+]{Fore.RESET} Requirements have been installed. Run the applicaiton again.\n")
+        exit()
+
+if PLATFORM == "win":
+    os.system("cls")
+else:
+    os.system("clear")
+
 
 banners = [
 r'''
@@ -110,7 +130,7 @@ try:
     with open(f"{fileName}.pdf", "wb") as pdffile:
         pdffile.write(pdfData)
 
-    print(f"\n{Fore.GREEN}[+]{Fore.RESET} PDF Created!")
+    print(f"\n{Fore.CYAN}[+]{Fore.RESET} PDF Created!")
     print("\nExiting now...")
     time.sleep(2)
 

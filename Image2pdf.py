@@ -3,12 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 import subprocess
 import random
-
 import subprocess
-try:
-    subprocess.run(['wrongcommand'], check = True)
-except subprocess.CalledProcessError:
-    print ('wrongcommand does not exist')
 
 try: 
     import colorama

@@ -9,7 +9,8 @@ try:
 except:
     print("Requirements not found\n\nInstalling requirements now...\n")
     try:
-        os.system("pip install img2pdf")
+        os.system("apt install pip")
+        os.system("pip3 install img2pdf")
     except:
         try:
             os.system("pip3 install img2pdf")

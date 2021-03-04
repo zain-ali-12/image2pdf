@@ -92,12 +92,12 @@ root.withdraw()
 
 imgList = filedialog.askopenfilenames()
 
+imgList = list(imgList)
 if imgList == None or imgList == "" or imgList == []:
     print(f"{Fore.RED}[+]{Fore.RESET} No files selected.\n\nExiting now...\n")
     time.sleep(2)
     exit()
 
-imgList = list(imgList)
 print("[+] This is the order your files will be converted to pdf in :")
     
 for image in imgList:
